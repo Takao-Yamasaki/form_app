@@ -1,7 +1,15 @@
 h1 商品一覧
-ul 
-  - @items.each do |item|
-    li
-      = item.code 
-      = item.item 
-      = item.price
+= link_to '新規登録へ', new_item_path
+
+table 
+  thead
+    tr 
+      th 商品コード
+      th 商品名
+      th 販売価格
+  tbody
+    - @items.each do |item|
+      tr 
+        td= item.code 
+        td= item.item 
+        td= item.price
