@@ -1,15 +1,17 @@
 h1 商品一覧
-= link_to '新規登録へ', new_item_path
+= link_to '新規作成', new_item_path
 
 table 
   thead
-    tr 
+    tr
+      th ID  
       th 商品コード
       th 商品名
       th 販売価格
   tbody
     = @items.each do |item|
-      tr 
+      tr
+        td= item.id
         td= item.code 
         td= item.item 
         td= item.price

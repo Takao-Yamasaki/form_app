@@ -27,6 +27,6 @@ class Form::ItemCollection < Form::Base
   end
 
   def target_items
-    self.items.select { |v| value_to_boolean(v.register) }
+    self.items.select { |v| v.register }
   end
 end
