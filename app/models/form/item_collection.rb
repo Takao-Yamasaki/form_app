@@ -2,14 +2,15 @@ class Form::ItemCollection < Form::Base
   DEFAULT_ITEM_COUNT = 5
   attr_accessor :items
 
-  def initialize(attribute = {})
+  def initialize(attributes = {})
     super attributes
     self.items = DEFAULT_ITEM_COUNT.times.map { Form::Item.new } unless items.present?
   end
 
   def items_attributes=(attributes)
-    self.items = attributes.map do | _, items_attributes|
-      Form::Item.new(items_attributes).tap { |v| v.availability = false }
+    self.items = attributes.map do | _, items_attributes |
+      Form::Item.new(items_attributes)
+    end
   end
   
   # バリデーションチェック
@@ -26,6 +27,6 @@ class Form::ItemCollection < Form::Base
   end
 
   def target_items
-    self.items.select { |v| value_to_boolean(v.registar) }
+    self.items.select { |v| value_to_boolean(v.register) }
   end
 end

@@ -8,7 +8,7 @@ table
       th 商品名
       th 販売価格
   tbody
-    - @items.each do |item|
+    = @items.each do |item|
       tr 
         td= item.code 
         td= item.item 
