@@ -1,2 +1,16 @@
 = link_to '一覧へ', items_path
 
+table
+  thead 
+    tr 
+      th 登録
+      th 商品コード
+      th 商品名
+      th 販売価格
+  tbody
+    = form_with(model: @item, local: true) do |f|
+      td
+      td= f.text_field :code
+      td= f.text_field :item
+      td= f.text_field :price
+      td= f.submit '一括登録'

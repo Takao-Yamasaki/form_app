@@ -4,12 +4,12 @@ class ItemsController < ApplicationController
   end
   
   def new
-    @item = ItemForm.new
+    @form = Form::ItemCollection.new
   end
 
   def create
-    @item = ItemFrom.new(item_price)
-    if @item.save
+    @form = Form::ItemCollection.new(item_collection_params)
+    if @form.save
       redirect_to items_path, notice: '商品を登録しました。'
     else
       render :new
@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
 
   private
   
-  def item_params
-    params.require(:item).permit(:code, :item, :price)
+  def item_collection_params
+    params.require(:form_item_collection).permit(items_attributes: Form::Item::REGISTABLE_ATTRIBUTES)
   end
 end
