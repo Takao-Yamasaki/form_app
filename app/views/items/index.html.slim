@@ -1,0 +1,7 @@
+h1 商品一覧
+ul 
+  - @items.each do |item|
+    li
+      = item.code 
+      = item.item 
+      = item.price
