@@ -1,0 +1,22 @@
+= link_to '一覧へ', items_path
+
+= form_with model: @form, url: items_path, method: :post, local: true do |f|    
+  table
+    thead 
+      tr 
+        th 登録
+        th 商品コード
+        th 商品名
+        th 販売価格
+    tbody
+      = f.fields_for :items do |f|
+        tr 
+          = render 'layouts/error_messages', model: f.object
+        tr
+          td.text-center
+            = f.check_box :registar
+          td= f.text_field :code, class: 'form-control'
+          td= f.text_field :item, class: 'form-control'
+          td= f.text_field :price, class: 'form-control'
+  div.text-center
+    = f.submit '一括登録', class: 'btn btn-primary'
