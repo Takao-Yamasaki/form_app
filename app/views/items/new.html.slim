@@ -1,7 +1,6 @@
 = link_to '一覧へ', items_path
 
 = form_with model: @form, url: items_path, method: :post, local: true do |f|    
-  = render 'layouts/error_messages', model: f.object
   table
     thead 
       tr 
@@ -11,6 +10,8 @@
         th 販売価格
     tbody
       = f.fields_for :items do |f|
+        tr 
+          = render 'layouts/error_messages', model: f.object
         tr
           td.text-center
             = f.check_box :registar
