@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
     if @form.save
       redirect_to items_path, notice: '商品を登録しました。'
     else
+      flash.now[:alert] = '商品の登録に失敗しました。'
       render :new
     end
   end

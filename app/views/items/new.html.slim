@@ -1,6 +1,6 @@
 = link_to '一覧へ', items_path
 
-= form_with model: @form, url: items_path, method: :post do |f|    
+= form_with model: @form, url: items_path, method: :post, local: true do |f|    
   table
     thead 
       tr 
@@ -12,7 +12,7 @@
       = f.fields_for :items do |f|
         tr
           td.text-center
-            = f.check_box :register, class: 'top10 registration-checkbox'
+            = f.check_box :registar
           td= f.text_field :code, class: 'form-control'
           td= f.text_field :item, class: 'form-control'
           td= f.text_field :price, class: 'form-control'

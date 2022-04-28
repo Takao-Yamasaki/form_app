@@ -4,13 +4,11 @@ class Form::ItemCollection < Form::Base
 
   def initialize(attributes = {})
     super attributes
-    self.items = DEFAULT_ITEM_COUNT.times.map { Form::Item.new } unless items.present?
+    self.items = DEFAULT_ITEM_COUNT.times.map { Form::Item.new } unless self.items.present?
   end
 
   def items_attributes=(attributes)
-    self.items = attributes.map do | _, items_attributes |
-      Form::Item.new(items_attributes)
-    end
+    self.items = attributes.map { |_, items_attributes| Item.new(items_attributes) } 
   end
   
   # バリデーションチェック
@@ -22,11 +20,15 @@ class Form::ItemCollection < Form::Base
   # 保存処理
   def save
     return false unless valid?
-    Item.transaction { target_items.each(&:save!) }
+    Item.transaction do
+      target_items.map do |item|
+        item.save! if item.registar?
+      end
+    end
     true
   end
 
   def target_items
-    self.items.select { |v| v.register }
+    self.items.select { |v| v.registar }
   end
 end
