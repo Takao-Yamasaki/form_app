@@ -1,6 +1,7 @@
 = link_to '一覧へ', items_path
 
 = form_with model: @form, url: items_path, method: :post, local: true do |f|    
+  = render 'layouts/error_messages', model: f.object
   table
     thead 
       tr 
